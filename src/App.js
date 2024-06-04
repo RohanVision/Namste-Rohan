@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Shimmer from "./components/Shimmer";
+// import Grocery from "./components/Grocery";
 
 // React Element
 
@@ -25,6 +27,8 @@ import RestaurantMenu from "./components/RestaurantMenu";
 //     return <h1 className="header">This is Functional Component</h1>;
 // };
 
+
+const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
     return (
@@ -51,6 +55,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/contact",
                 element: <Contact />,
+            },
+            {
+                path: "/grocery",
+                element: <Suspense fallback={<Shimmer />}><Grocery /></Suspense>,
             },
             {
                 path: "/restaurants/:resId",
