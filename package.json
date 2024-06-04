@@ -1,0 +1,33 @@
+{
+	"name": "namste_rohan",
+	"version": "1.0.0",
+	"description": "This is Namste Rohan React Project",
+	"scripts": {
+		"start": "parcel index.html",
+		"build": "parcel build index.html",
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "(https://github.com/RohanVision/Namste-Rohan.git)"
+	},
+	"keywords": [
+		"react",
+		"rohan",
+		"project"
+	],
+	"author": "Rohan Amberkar",
+	"license": "ISC",
+	"devDependencies": {
+		"parcel": "^2.12.0",
+		"process": "^0.11.10"
+	},
+	"dependencies": {
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-router-dom": "^6.23.1"
+	},
+	"browsersList": [
+		"Last 2 Version"
+	]
+}

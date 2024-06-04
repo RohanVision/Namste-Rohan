@@ -1,3 +1,78 @@
-#title {
-    color: red;
+.header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo {
+    width: 100px;
+}
+
+.nav-items>ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-items>ul>li {
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.filter-container {
+    display: flex;
+}
+
+.search {
+    padding: 10px;
+}
+
+.filter-btn {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.res-card {
+    width: 200px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    background-color: #cdcdcd;
+}
+
+.res-card:hover {
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.res-logo {
+    width: 100%;
+}
+
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card {
+    width: 200px;
+    height: 400px;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
+
+.login {
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+
+.user-card {
+    padding: 10px;
+    border: 1px solid #ccc;
 }
