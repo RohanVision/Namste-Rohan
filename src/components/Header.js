@@ -1,24 +1,27 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/Constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 
 const Header = () => {
     const [btnNameLogin, setBtnNameLogin] = useState("Login");
     const onlineStatus = useOnlineStatus();
+    const { loggedInUser } = useContext(userContext);
+    console.log(loggedInUser);
 
     return (
-        <div className="header">
+        <div className="flex justify-between shadow-lg mb-2">
             <div>
-                <img className="logo" src={LOGO_URL} />
+                <img className="w-48" src={LOGO_URL} />
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li>Online Status{(onlineStatus === true ? "✅" : "🔴")}</li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="About">About Us</Link></li>
-                    <li><Link to="Contact">Contact</Link></li>
-                    <li><Link to="Grocery">Grocery</Link></li>
+            <div className="flex items-center">
+                <ul className="flex p-4 m-4">
+                    <li className="px-4">Online Status {(onlineStatus === true ? "✅" : "🔴")}</li>
+                    <li className="px-4"><Link to="/">Home</Link></li>
+                    <li className="px-4"><Link to="About">About Us</Link></li>
+                    <li className="px-4"><Link to="Contact">Contact</Link></li>
+                    <li className="px-4"><Link to="Grocery">Grocery</Link></li>
                     <button className="login" onClick={() => {
                         if (btnNameLogin === "Login") {
                             setBtnNameLogin("Logout");
@@ -26,6 +29,7 @@ const Header = () => {
                             return setBtnNameLogin("Login");
                         }
                     }}>{btnNameLogin}</button>
+                    <li className="px-4 font-bold">{loggedInUser}</li>
                 </ul>
             </div>
         </div>
