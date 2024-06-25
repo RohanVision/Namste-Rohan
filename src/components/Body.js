@@ -3,13 +3,12 @@ import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { withDiscount } from "./RestaurantCard";
 import userContext from "../utils/userContext";
 
 const Body = () => {
     // State Variable
-    const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurant, setFilterdRestaurant] = useState([]);
+    const [listOfRestaurants, setListOfRestaurants] = useState([]);
     const [searchText, setSearchText] = useState("");
 
     const RestaurantCardDiscount = withDiscount(RestaurantCard);
@@ -17,11 +16,11 @@ const Body = () => {
     useEffect(() => {
         fetchData();
     }, []);
-    // https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
+    // https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
 
 
     const fetchData = async () => {
-        const data = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const json = await data.json();
         // console.log(json); 
@@ -53,7 +52,7 @@ const Body = () => {
         <div className="body">
             <div className="filter-container flex items-center mb-2 p-2">
                 <div className="search">
-                    <input type="text" className="border p-1 border-solid border-black outline-none" value={searchText} onChange={(e) => {
+                    <input type="text" data-testid="searchInput" className="border p-1 border-solid border-black outline-none" value={searchText} onChange={(e) => {
                         setSearchText(e.target.value);
                     }} />
                     <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={() => {
@@ -62,25 +61,28 @@ const Body = () => {
                         // console.log(searchText);
                         const filteredRestaurant = listOfRestaurants
                             .filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase()));
-
                         setFilterdRestaurant(filteredRestaurant);
                     }}>Search</button>
                 </div>
 
                 {/* Filter Functionality */}
-                <div>
-                    <button className="filter-btn bg-orange-600 rounded-lg p-2 text-white" onClick={() => {
-                        filteredList = resList.filter((res) => {
-                            return res.info.avgRating > 4;
-                        });
-                        setListOfRestaurants(filteredList);
+
+                <button className="filter-btn bg-orange-600 rounded-lg p-2 text-white"
+                    onClick={() => {
+                        const filteredList = listOfRestaurants.filter((res) => {
+                            return res.info.avgRating > 4
+                        })
+                        setFilterdRestaurant(filteredList);
                     }}
-                    >Top Rated Restaurant</button>
-                </div>
+                >
+                    Top Rated Restaurant
+                </button>
+
 
                 <div className="mx-5">
                     <label>UserName: </label>
-                    <input className="border border-black p-1" value={loggedInUser} onChange={(e) => setUserName(e.target.value)} />
+                    <input className="border border-black p-1" value={loggedInUser} onChange={(e) =>
+                        setUserName(e.target.value)} />
                 </div>
             </div>
 
@@ -97,7 +99,7 @@ const Body = () => {
                     </Link>
                 ))}
             </div>
-        </div>
+        </div >
     )
 }
 
