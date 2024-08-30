@@ -1,38 +1,20 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
+import RestaurantMenu from "./components/RestaurantMenu";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
 import userContext from "./utils/userContext";
-import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 // import Grocery from "./components/Grocery";
 
-// React Element
-
-// const heading = React.createElement("h1", { id: "heading" }, "Namste React");
-
-// JSX
-// React Element
-// const jsxHeading = (
-//     [<h1>Namste ROhan JSX here</h1>,
-//     <h2>Second </h2>]
-// );
-
-// Function Component
-// const HeadingComponent = () => {
-//     return <h1 className="header">This is Functional Component</h1>;
-// };
-
-
-const Grocery = lazy(() => import("./components/Grocery"));
+const Grocery = lazy(() => import("./components/Grocery")); // Lazy Loading
 
 const AppLayout = () => {
     // UseContext How to use Globally with API example
