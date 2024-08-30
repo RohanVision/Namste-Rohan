@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { CDN_URL } from "../utils/Constant";
+import { CDN_URL } from "../utils/constant.js";
 import { addItems } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
