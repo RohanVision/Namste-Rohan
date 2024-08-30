@@ -16,26 +16,29 @@ const Header = () => {
     // console.log(cartItems);
 
     return (
-        <div className="flex justify-between shadow-lg mb-2">
+        <div className="flex justify-between shadow-lg text-sm">
             <div>
-                <img className="w-48" src={LOGO_URL} />
+                <Link to="/"><img className="w-28 h-auto transform transition-transform hover:scale-105" src={LOGO_URL} /></Link>
             </div>
-            <div className="flex items-center">
-                <ul className="flex p-4 m-4">
-                    <li className="px-4">Online Status {(onlineStatus === true ? "✅" : "🔴")}</li>
-                    <li className="px-4"><Link to="/">Home</Link></li>
-                    <li className="px-4"><Link to="About">About Us</Link></li>
-                    <li className="px-4"><Link to="Contact">Contact</Link></li>
-                    <li className="px-4"><Link to="Grocery">Grocery</Link></li>
-                    <li className="px-4"><Link to="Cart">Cart ({cartItems.length} items)</Link></li>
-                    <button className="login" onClick={() => {
+            <div className="flex space-x-6 items-center">
+                <ul className="flex p-2 items-center">
+                    <li className="text-gray-600 hover:text-green-600 transition-colors duration-300 px-2">Online Status {(onlineStatus === true ? "✅" : "🔴")}</li>
+                    <li className="text-gray-600 hover:text-green-600 transition-colors duration-300 px-2"><Link to="/">Home</Link></li>
+                    <li className="text-gray-600 hover:text-green-600 transition-colors duration-300 px-2"><Link to="About">About Us</Link></li>
+                    <li className="text-gray-600 hover:text-green-600 transition-colors duration-300 px-2"><Link to="Contact">Contact</Link></li>
+                    <li className="text-gray-600 hover:text-green-600 transition-colors duration-300 px-2"><Link to="Grocery">Grocery</Link></li>
+                    <li className="text-gray-600 hover:text-green-600 transition-colors duration-300 px-2"><Link to="Cart">Cart ({cartItems.length} items)</Link></li>
+
+                    <button className="login ml-6 px-4 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors duration-300" onClick={() => {
                         if (btnNameLogin === "Login") {
                             setBtnNameLogin("Logout");
                         } else {
                             return setBtnNameLogin("Login");
                         }
                     }}>{btnNameLogin}</button>
-                    <li className="px-4 font-bold">{loggedInUser}</li>
+
+                    {/* Change Username */}
+                    <li className="ml-4 px-4 font-bold text-gray-700">{loggedInUser}</li>
                 </ul>
             </div>
         </div>
