@@ -50,18 +50,18 @@ const Body = () => {
         <div className="body bg-gray-50 min-h-screen p-6">
             <div className="filter-container flex flex-col md:flex-row justify-between items-center mb-6 p-4 bg-white shadow-lg rounded-lg">
                 {/* Search Section */}
-                <div className="search flex items-center space-x-4 mb-4 md:mb-0">
+                <div className="search flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mb-4 md:mb-0 w-full md:w-auto">
                     <input
                         type="text"
                         data-testid="searchInput"
-                        className="border p-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="border p-2 w-full md:w-auto border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                         placeholder="Search restaurants..."
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
                     />
                     <button
                         id="search-button"
-                        className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300"
+                        className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300 w-full md:w-auto"
                         onClick={() => {
                             const filteredRestaurant = listOfRestaurants.filter((res) =>
                                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -77,7 +77,7 @@ const Body = () => {
 
                 {/* Filter Functionality */}
                 <button
-                    className="filter-btn bg-red-600 text-white rounded-lg p-3 hover:bg-red-700 transition duration-300"
+                    className="filter-btn bg-red-600 text-white rounded-lg p-3 hover:bg-red-700 transition duration-300 w-full md:w-auto mb-4 md:mb-0"
                     onClick={() => {
                         const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4.5);
                         setFilterdRestaurant(filteredList);
@@ -87,15 +87,16 @@ const Body = () => {
                 </button>
 
                 {/* Login User Functionality */}
-                <div className="mt-4 md:mt-0">
+                <div className="flex items-center w-full md:w-auto">
                     <input
                         placeholder="Type your name"
-                        className="border p-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="border p-2 w-full md:w-auto border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                         value={loggedInUser}
                         onChange={(e) => setUserName(e.target.value)}
                     />
                 </div>
             </div>
+
 
             {/* Restaurant List Container */}
             <div className="res-container">
