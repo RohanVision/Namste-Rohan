@@ -16,10 +16,10 @@ const Body = () => {
         fetchData();
     }, []);
     // https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
-
+    // ("https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
     const fetchData = async () => {
-        const data = await fetch("https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const json = await data.json();
         setListOfRestaurants(json?.data?.cards[4].card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -77,7 +77,7 @@ const Body = () => {
                 <button
                     className="filter-btn bg-red-600 text-white rounded-lg p-3 hover:bg-red-700 transition duration-300 w-full md:w-auto mb-4 md:mb-0"
                     onClick={() => {
-                        const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4.5);
+                        const filteredList = listOfRestaurants.filter((res) => res.info.avgRating > 4.3);
                         setFilterdRestaurant(filteredList);
                     }}
                 >

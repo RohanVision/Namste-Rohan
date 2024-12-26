@@ -5,9 +5,9 @@ import RestaurantCategory from "./RestaurantCategory";
 import RestaurantMenuShimmer from "./RestaurantMenuShimmer";
 
 const RestaurantMenu = () => {
+    const [showIndex, setShowIndex] = useState(null);
     const { resId } = useParams();
     const resInfo = useRestaurantMenu(resId);
-    const [showIndex, setShowIndex] = useState(null);
 
     if (resInfo === null) {
         return <RestaurantMenuShimmer />
@@ -20,6 +20,10 @@ const RestaurantMenu = () => {
     const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(c =>
         c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     )
+
+    const handleToggleCategory = (index) => {
+        setShowIndex((prevIndex) => (prevIndex === index ? null : index));
+    };
 
     // console.log(categories);
 
@@ -34,7 +38,7 @@ const RestaurantMenu = () => {
                     key={category?.card?.card?.title}
                     data={category?.card?.card}
                     showItems={index === showIndex ? true : false}
-                    setShowIndex={() => setShowIndex(index)}
+                    setShowIndex={() => handleToggleCategory(index)}
                 />
             )}
         </div>

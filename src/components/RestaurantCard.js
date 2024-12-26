@@ -31,7 +31,7 @@ const RestaurantCard = (props) => {
     );
 };
 
-
+// Higher Order Component => Will Provide Discount Label
 export const withDiscount = (RestaurantCard) => {
     return (props) => {
         const { resData } = props;
