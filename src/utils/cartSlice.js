@@ -7,7 +7,7 @@ const cartSlice = createSlice({
     },
     reducers: {
         addItems: (state, action) => {
-            // Mutating the state here
+            // Mutating the state here (Immer Library doing behind the scene)
             state.items.push(action.payload)
         },
         removeItems: (state, action) => {

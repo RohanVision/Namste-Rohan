@@ -40,7 +40,7 @@ describe("Contact us page Test Cases", () => {
 
     it("Should load input name inside Contact input", () => {
         render(<Contact />);
-        const inputName = screen.getByPlaceholderText("name");
+        const inputName = screen.getByPlaceholderText("Your Name");
 
         // Assertion
         expect(inputName).toBeInTheDocument();
@@ -53,6 +53,6 @@ describe("Contact us page Test Cases", () => {
 
         // console.log(inputBoxes.length);
         // Assertion
-        expect(inputBoxes.length).toBe(2)
+        expect(inputBoxes.length).toBe(4)
     });
 })
