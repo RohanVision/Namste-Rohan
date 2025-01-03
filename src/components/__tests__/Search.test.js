@@ -4,16 +4,22 @@ import Body from "../Body";
 import MOCK_DATA from "../mocks/mockResListData.json"
 import { BrowserRouter } from "react-router-dom";
 
+
+// Dummy Mock fetch function which will Identical to Original fetch function
 global.fetch = jest.fn(() => {
+    // Return promise and resovlve
     return Promise.resolve({
+        // Resolve with JSON and JSON will again return a Promise with DATA
         json: () => {
             return Promise.resolve(MOCK_DATA);
         }
     })
 })
 
-it("Should render the  Res list for burger test input", async () => {
-    await act(async () => {
+it("Should render the Res list for burger test input", async () => {
+    // Where using State updates wrap render inside act function
+    // act return promise so we will await 
+    await act(async () => { // takes callback function which is async function which return render
         render(
             <BrowserRouter>
                 <Body />;
@@ -21,24 +27,26 @@ it("Should render the  Res list for burger test input", async () => {
         )
     });
 
+    // Before
     const cardsBeforeSearch = screen.getAllByTestId("resCard");
+    expect(cardsBeforeSearch.length).toBe(8);
 
-    expect(cardsBeforeSearch.length).toBe(8)
-
+    // Check for Search button and Search Input
     const searchBtn = screen.getByRole("button", { name: "Search" });
+    const searchInput = screen.getByTestId("searchInput"); // We need to pass searchInput as data-testId
 
-    const searchInput = screen.getByTestId("searchInput");
-
+    // Change Input and Click on Search Button
     fireEvent.change(searchInput, { target: { value: "burger" } });
-
     fireEvent.click(searchBtn);
 
-    // screen should load 4 cards
-    const cardsAfterSearch = screen.getAllByTestId("resCard");
-
+    // After Search
+    const cardsAfterSearch = screen.getAllByTestId("resCard"); // Give the testId to restaurant card
+    // screen should load 1 cards
     expect(cardsAfterSearch.length).toBe(1);
 
 });
+
+// Filter Restaurant Data Test
 
 global.fetch = jest.fn(() => {
     return Promise.resolve({
@@ -64,5 +72,5 @@ it("should filter the Top rated restaurant", async () => {
     fireEvent.click(topRatedBtn);
 
     const cardsAfterFilter = screen.getAllByTestId("resCard");
-    expect(cardsAfterFilter.length).toBe(4)
+    expect(cardsAfterFilter.length).toBe(2)
 })
