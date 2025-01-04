@@ -10,12 +10,12 @@ import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom"
 
 
-global.fetch = jest.fn(() => {
-    return Promise.resolve({
+global.fetch = jest.fn(() =>
+    Promise.resolve({
         // promise.resolve ^ return json or convert to json fn and then it will return promise
-        json: () => { return Promise.resolve(MOCK_DATA) }
+        json: () => Promise.resolve(MOCK_DATA),
     })
-})
+);
 
 it("should load restaurant menu component", async () => {
     await act(async () => render(
@@ -33,9 +33,12 @@ it("should load restaurant menu component", async () => {
 
     expect(screen.getAllByTestId("foodItems").length).toBe(16);
 
+    // Before Clicking on Add expect 0 Items
+    expect(screen.getByText("Cart (0 items)")).toBeInTheDocument();
+
     const addBtns = screen.getAllByRole("button", { name: "ADD" });
     // console.log(addBtns.length)
-    fireEvent.click(addBtns[0])
+    fireEvent.click(addBtns[0]) // Click on the first button
 
     expect(screen.getByText("Cart (1 items)")).toBeInTheDocument();
     expect(screen.getAllByTestId("foodItems").length).toBe(17);
@@ -44,5 +47,4 @@ it("should load restaurant menu component", async () => {
     expect(screen.getAllByTestId("foodItems").length).toBe(16);
 
     expect(screen.getByText("Cart is Empty please add some Item")).toBeInTheDocument();
-
 });
