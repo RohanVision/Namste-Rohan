@@ -11,6 +11,8 @@ const Body = () => {
     const [filteredRestaurant, setFilterdRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
     const RestaurantCardDiscount = withDiscount(RestaurantCard);
+    // set userName via input to header and About
+    const { loggedInUser, setUserName } = useContext(userContext);
 
     useEffect(() => {
         fetchData();
@@ -36,8 +38,6 @@ const Body = () => {
             </div>
         );
     }
-
-    const { loggedInUser, setUserName } = useContext(userContext);
 
     // Conditional Rendering : Will display skelenton data resembles to the actual data
     // if (listOfRestaurants.length === 0) {
